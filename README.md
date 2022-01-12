@@ -28,7 +28,7 @@ As for the reward space, we need to discretize the variables we focus on first. 
   <thead>
     <tr >
         <th scope="col" width="40%"><img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/boxplot.png" width="100%" height="100%"></th>
-        <th scope="col">
+        <th scope="col" align="center">
             <table>
                 <thead>
                     <tr>
