@@ -58,7 +58,7 @@ As for the reward space, we need to discretize the variables we focus on first. 
 In Group1 state, # of confirmed case is less than 0 then the first location of our state is 0. Others and so on. The second location is about the number of vaccination. Because the time range of data is 2020/01 to 2021/12, most of the number of vaccination are zero. The second location of state we only use the variable that whether the # of vaccination is more than zero.
 
 Then we can define our state in Group1 as below:
-<table>
+<table align="center">
     <thead>
         <tr>
             <td>state</td>
@@ -99,39 +99,119 @@ Then we can define our state in Group1 as below:
     </thead>
 </table>    
 
-The algorithm will learn from historical data and help us to make the price adjustment decision, which makes it an ideal approach for implementing this concept. The following analysis can be broken down into two sections. First we apply **value iteration**, which requires the transition probability between each state to be given. The agent updates the value table of the states according to **Bellman’s Equation** in each iteration until convergence. Secondly, we expand the problem to using **Deep Q-learning**, the agent now no longer needs to know either the transition probability or the reward function, instead, we construct a neural network to generate the optimal action under the given state. Also, DQN allows us to attempt more complicated state settings such as continuous state space. 
-<!-- (修正For each of the two methods, we consider both single state variable and multiple state variables versions to observe the differences. ) -->
+So does in Group2.
 
-<table class="table justify-content-center" >
+Then we can use this self-defined state and historical data to calculate the transition matrix. Some of the results are as follows.
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/transition%20matrix.PNG" width="100%" height="100%">
+
+Now we can define the reward. All the state we have explained above. So we know that the state (3 0) Group1 is the worst case and the state (0 1) is the best case. The rewards are defined in the following table.
+<table align="center">
+    <thead>
+        <tr>
+            <td>state</td>
+            <th align="center">(3 0)</th>
+            <th align="center">(2 0)</th>
+            <th align="center">(1 0)</th>
+            <th align="center">(0 0)</th>
+            <th align="center">(3 1)</th>
+            <th align="center">(2 1)</th>
+            <th align="center">(1 1)</th>
+            <th align="center">(0 1)</th>
+        </tr>
+        <tr>
+            <td>reward</td>
+            <th align="center">-10</th>
+            <th align="center">-7</th>
+            <th align="center">-5</th>
+            <th align="center">-2</th>
+            <th align="center">1</th>
+            <th align="center">4</th>
+            <th align="center">7</th>
+            <th align="center">10</th>
+        </tr>
+    </thead>
+</table> 
+
+<br>
+So does in Group2
+
+<table align="center" class="AAA">
+    <thead>
+        <tr>
+            <td>state</td>
+            <th align="center">(0 0)</th>
+            <th align="center">(0 1)</th>
+            <th align="center">(0 2)</th>
+            <th align="center">(0 3)</th>
+            <th align="center">(1 0)</th>
+            <th align="center">(1 1)</th>
+            <th align="center">(1 2)</th>
+            <th align="center">(1 3)</th>
+        </tr>
+        <tr>
+            <td>reward</td>
+            <th align="center">10</th>
+            <th align="center">6</th>
+            <th align="center">2</th>
+            <th align="center">0</th>
+            <th align="center">6</th>
+            <th align="center">2</th>
+            <th align="center">-2</th>
+            <th align="center">-4</th>
+        </tr>
+        <tr>
+            <td>state</td>
+            <th align="center">(2 0)</th>
+            <th align="center">(2 1)</th>
+            <th align="center">(2 2)</th>
+            <th align="center">(2 3)</th>
+            <th align="center">(3 0)</th>
+            <th align="center">(3 1)</th>
+            <th align="center">(3 2)</th>
+            <th align="center">(3 3)</th>
+        </tr>
+        <tr>
+            <td>reward</td>
+            <th align="center">2</th>
+            <th align="center">-2</th>
+            <th align="center">-6</th>
+            <th align="center">-8</th>
+            <th align="center">0</th>
+            <th align="center">-4</th>
+            <th align="center">-8</th>
+            <th align="center">-10</th>
+        </tr>
+    </thead>
+</table>    
+
+The algorithm will learn from historical data and help us to make decision. The following analysis results can be discussed in two sections, which are Group1 and Group2 respectively. 
+And we arrange the current results in the following table.
+
+<table align="center" class="table justify-content-center" >
   <thead>
     <tr >
       <th scope="col"></th> 
-      <th scope="col" >Group 1 (# of confirmed and vaccination or not)</th>
-      <th scope="col" >Group 2 (# of confirmed and # of entering and leaving)</th>
+      <th scope="col" >Group 1</th>
+      <th scope="col" >Group 2</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">State</th>
-      <td> single variable <br/> (discrete) </td>
-      <td>single / multiple variables <br/> (continuous)</td>
+      <td> # of confirmed <br> vaccination or not</td>
+      <td># of confirmed  <br> # of entering and leaving</td>
     </tr>
     <tr>
       <th scope="row">Action</th>
-      <td>five price values</td>
-      <td>remain / increase / reduce price</td>
+      <td colspan="2">Mask (M)<br>
+                      Mask + Airport control (MA)<br>
+                      Mask + Airport control + Vaccination (MAV)<br>
+                      Mask + Airport control + Vaccination rate > 20% (MAVV)<br>
+      </td>
     </tr>
     <tr>
       <th scope="row">Reward</th>
-      <td>best profit state: 1, <br/> worst profit state: -1, <br />else: 0</td>
-      <td> profit / difference of conversion rate </td>
-    </tr>
-    <tr>
-      <th scope="row">Comparison</th>
-      <td> - Require transition probability matrix <br />- Agent knows the reward fnction </td>
-      <td> - Transition probability is not required <br />
- - Agent does not know reward funciton
-</td>
+      <td colspan="2">on the table above repectively</td>
     </tr>
   </tbody>
 </table>
