@@ -45,6 +45,11 @@ As for the reward space, we need to discretize the variables we focus on first. 
                         <th>8</th>
                         <th>723</th>
                     </tr>
+                        <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/fordemo.png" width="100%" height="100%">
+                    
+                    <tr>
+
+                    </tr>
                 </thead>
             </table>    
         </th>
