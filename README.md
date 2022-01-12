@@ -2,7 +2,7 @@
 ###### `January 14, 2022 / by Shu-Huei Yang and Meng-Xiu Lu`
 <!-- <br /> -->
 
-#### This study proposes **value iteration** and **Markov Decision Process (MDP)** models to provide prevemtion strategy suggestions of the COVID-19.
+#### This study use **Markov Decision Process (MDP)** models to provide prevemtion strategy suggestions of the COVID-19.
 
 #### Contents:
 1. [Motivation and Background](#Motivation-and-Background)
@@ -24,7 +24,31 @@ In this methodology, we need to decide the state, action, transition matrix and 
 The action space represents the behaviors of prevention strategy, we refer th prevention timeline of Taiwan. Here are some action we will focus on : mask, airport control and  vaccination. 
 
 As for the reward space, we need to discretize the variables we focus on first. We use quantile for discretization and the picture below is the boxplot of # of confirmed of Taiwan. We can see that most confirmed number are low.
-<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/boxplot.png" width="75%" height="75%">
+<table class="table for Q25" >
+  <thead>
+    <tr >
+        <th scope="col"><img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/boxplot.png" width="30%" height="30%"></th>
+        <th scope="col">
+            <table>
+                <thead>
+                    <tr>
+                        <th>min</th>
+                        <th>Q25</th>
+                        <th>Q50</th>
+                        <th>Q75</th>
+                        <th>Max</th>
+                    </tr>
+                    <tr>
+                        <th>-2</th>
+                        <th>0</th>
+                        <th>3</th>
+                        <th>8</th>
+                        <th>723</th>
+                    </tr>
+                </thead>
+            </table>    
+        </th>
+
 
 The algorithm will learn from historical data and help us to make the price adjustment decision, which makes it an ideal approach for implementing this concept. The following analysis can be broken down into two sections. First we apply **value iteration**, which requires the transition probability between each state to be given. The agent updates the value table of the states according to **Bellman’s Equation** in each iteration until convergence. Secondly, we expand the problem to using **Deep Q-learning**, the agent now no longer needs to know either the transition probability or the reward function, instead, we construct a neural network to generate the optimal action under the given state. Also, DQN allows us to attempt more complicated state settings such as continuous state space. 
 <!-- (修正For each of the two methods, we consider both single state variable and multiple state variables versions to observe the differences. ) -->
