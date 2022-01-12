@@ -23,7 +23,7 @@ In this methodology, we need to decide the state, action, transition matrix and 
 
 The action space represents the behaviors of prevention strategy, we refer th prevention timeline of Taiwan. Here are some action we will focus on : mask, airport control and  vaccination. 
 
-As for the reward space, we need to discretize the variables we focus on first. We use quantile for discretization and the picture below is the boxplot of # of confirmed of Taiwan. We can see that most confirmed number are low.
+As for the reward space, we need to discretize the variables we focus on first. We use quantile for discretization and the picture below is the boxplot of # of confirmed of Taiwan. We can see that most confirmed number are low. Then we use this kind of method to define our state. 
 <table style="width:80%" class="table for Q25" >
   <thead>
     <tr >
@@ -55,6 +55,49 @@ As for the reward space, we need to discretize the variables we focus on first. 
   </thead>
 </table>
 
+In Group1 state, # of confirmed case is less than 0 then the first location of our state is 0. Others and so on. The second location is about the number of vaccination. Because the time range of data is 2020/01 to 2021/12, most of the number of vaccination are zero. The second location of state we only use the variable that whether the # of vaccination is more than zero.
+
+Then we can define our state in Group1 as below:
+<table>
+    <thead>
+        <tr>
+            <td>state</td>
+            <th align="center">(3 0)</th>
+            <th align="center">(2 0)</th>
+            <th align="center">(1 0)</th>
+            <th align="center">(0 0)</th>
+        </tr>
+        <tr>
+            <td>meaning</td>
+            <th>people confirmed > 8<br>
+                no vaccination in this day</th>
+            <th>3 < people confirmed < 8<br>
+                no vaccination in this day</th>
+            <th>0 < people confirmed < 3<br>
+                no vaccination in this day</th>
+            <th>people confirmed < 0<br>
+                no vaccination in this day</th>
+        </tr>
+        <tr>
+            <td>state</td>
+            <th align="center">(3 1)</th>
+            <th align="center">(2 1)</th>
+            <th align="center">(1 1)</th>
+            <th align="center">(0 1)</th>
+        </tr>
+        <tr>
+            <td>meaning</td>
+            <th>people confirmed > 8<br>
+                vaccination in this day</th>
+            <th>3 < people confirmed < 8<br>
+                vaccination in this day</th>
+            <th>0 < people confirmed < 3<br>
+                vaccination in this day</th>
+            <th>people confirmed < 0<br>
+                vaccination in this day</th>
+        </tr>
+    </thead>
+</table>    
 
 The algorithm will learn from historical data and help us to make the price adjustment decision, which makes it an ideal approach for implementing this concept. The following analysis can be broken down into two sections. First we apply **value iteration**, which requires the transition probability between each state to be given. The agent updates the value table of the states according to **Bellman’s Equation** in each iteration until convergence. Secondly, we expand the problem to using **Deep Q-learning**, the agent now no longer needs to know either the transition probability or the reward function, instead, we construct a neural network to generate the optimal action under the given state. Also, DQN allows us to attempt more complicated state settings such as continuous state space. 
 <!-- (修正For each of the two methods, we consider both single state variable and multiple state variables versions to observe the differences. ) -->
