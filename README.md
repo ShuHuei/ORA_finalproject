@@ -69,14 +69,14 @@ Then we can define our state in Group1 as below:
         </tr>
         <tr>
             <td>meaning</td>
-            <th>people confirmed > 8<br>
-                no vaccination in this day</th>
-            <th>3 < people confirmed < 8<br>
-                no vaccination in this day</th>
-            <th>0 < people confirmed < 3<br>
-                no vaccination in this day</th>
-            <th>people confirmed < 0<br>
-                no vaccination in this day</th>
+            <th># confirmed > 8<br>
+                no vaccination</th>
+            <th>3 < # confirmed < 8<br>
+                no vaccination</th>
+            <th>0 < # confirmed < 3<br>
+                no vaccination</th>
+            <th># confirmed < 0<br>
+                no vaccination</th>
         </tr>
         <tr>
             <td>state</td>
@@ -87,14 +87,14 @@ Then we can define our state in Group1 as below:
         </tr>
         <tr>
             <td>meaning</td>
-            <th>people confirmed > 8<br>
-                vaccination in this day</th>
-            <th>3 < people confirmed < 8<br>
-                vaccination in this day</th>
-            <th>0 < people confirmed < 3<br>
-                vaccination in this day</th>
-            <th>people confirmed < 0<br>
-                vaccination in this day</th>
+            <th># confirmed > 8<br>
+                vaccination</th>
+            <th>3 < # confirmed < 8<br>
+                vaccination</th>
+            <th>0 < # confirmed < 3<br>
+                vaccination</th>
+            <th># confirmed < 0<br>
+                vaccination</th>
         </tr>
     </thead>
 </table>    
