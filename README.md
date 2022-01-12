@@ -48,6 +48,9 @@ As for the reward space, we need to discretize the variables we focus on first. 
                 </thead>
             </table>    
         </th>
+    </tr>
+  </thead>
+</table>
 
 
 The algorithm will learn from historical data and help us to make the price adjustment decision, which makes it an ideal approach for implementing this concept. The following analysis can be broken down into two sections. First we apply **value iteration**, which requires the transition probability between each state to be given. The agent updates the value table of the states according to **Bellman’s Equation** in each iteration until convergence. Secondly, we expand the problem to using **Deep Q-learning**, the agent now no longer needs to know either the transition probability or the reward function, instead, we construct a neural network to generate the optimal action under the given state. Also, DQN allows us to attempt more complicated state settings such as continuous state space. 
