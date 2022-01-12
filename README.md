@@ -24,10 +24,10 @@ In this methodology, we need to decide the state, action, transition matrix and 
 The action space represents the behaviors of prevention strategy, we refer th prevention timeline of Taiwan. Here are some action we will focus on : mask, airport control and  vaccination. 
 
 As for the reward space, we need to discretize the variables we focus on first. We use quantile for discretization and the picture below is the boxplot of # of confirmed of Taiwan. We can see that most confirmed number are low.
-<table class="table for Q25" >
+<table style="width:80%" class="table for Q25" >
   <thead>
     <tr >
-        <th scope="col" width="30%"><img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/boxplot.png" width="100%" height="100%"></th>
+        <th scope="col" width="40%"><img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/boxplot.png" width="100%" height="100%"></th>
         <th scope="col">
             <table>
                 <thead>
