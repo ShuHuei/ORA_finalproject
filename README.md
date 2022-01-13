@@ -7,8 +7,8 @@
 #### Contents:
 1. [Motivation and Background](#Motivation-and-Background)
 2. [Methodology](#Methodology)
-3. [Analysis Result in Group1](#Part-I:-Analysis-Result-in-Group1)
-4. [Analysis Result in Group2](#Part-II:-Analysis-Result-in-Group2)
+3. [Analysis Result in Group1](#part-i-analysis-result-in-group1)
+4. [Analysis Result in Group2](#part-ii-analysis-result-in-group2)
 5. [Conclusion](#Conclusion)
 6. [Reference](#Reference)
 <br />
