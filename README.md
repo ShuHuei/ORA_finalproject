@@ -104,7 +104,7 @@ So does in Group2.
 Then we can use this self-defined state and historical data to calculate the transition matrix. Some of the results are as follows.
 <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/transition%20matrix.PNG" width="100%" height="100%">
 
-Now we can define the reward. All the state we have explained above. So we know that the state (3 0) Group1 is the worst case and the state (0 1) is the best case. The rewards are defined in the following table.
+Now we can define the reward. All the state we have explained above. So we know that the state (3 0) in Group1 is the worst case and the state (0 1) is the best case. The rewards are defined in the following table.
 <table align="center">
     <thead>
         <tr>
@@ -134,6 +134,7 @@ Now we can define the reward. All the state we have explained above. So we know 
 
 <br>
 So does in Group2
+<br>
 
 <table align="center" class="AAA">
     <thead>
@@ -225,7 +226,7 @@ And we arrange the current results in the following table.
 ### **Data Collection**
 The dataset used for this study is # of confirmed and vaccination data which can be found on [github](https://github.com/owid/covid-19-data/tree/master/public/data).  The columns *date, new_cases and new_vaccinations* are the variable we use in Group1. Then we collect the timeline of the strategies we focus on and type into a excel and then join with the table which includes date, new_cases and new_vaccinations.
 <br>
-<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/timeline.PNG" width=100% height=100% align="center"/>
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/timeline.PNG" width=80% height=80% align="center"/>
 
 Then we can use the final table to calculate the transition matrix.
 
@@ -255,10 +256,10 @@ The conclusions in Group1 are
 ## Part-II: Analysis Result in Group2
 
 ### **Data Collection**
-In this part, we also use the data from github. But we add a new variable which is about the number of arrival and departure of Taiwan. This data is from the open data of the [government](https://data.moi.gov.tw/moiod/Data/DataDetail.aspx?oid=905908DA-0EF6-4B24-87B0-35B7EDA4CFD2). We download all of these excels and sum the number of each airport and port. Then do the same thing as in the first part. We use quantile to discretize the variable.
+In this part, we also use the data from github. But we add a new variable which is about the number of arrival and departure of Taiwan. This data is from the open data website of the [government](https://data.moi.gov.tw/moiod/Data/DataDetail.aspx?oid=905908DA-0EF6-4B24-87B0-35B7EDA4CFD2). We download all of these excels and sum the number of each airport and port. Then do the same thing as in the first part : use quantile to discretize the variable.
 
-**State and Reward Settings**
-We have posted this table in the above. But we don't explain it. 
+**State and Reward Settings** <br>
+We have posted this table in the above but we don't explain it. 
 The state in Group2 still has two location. The first location is the same as Group1 which indicate that the # of confirmed. "0" means # of confirmed < 0 and "3" means # of confirmed > 8. And the second location is about the number of arrival and departure. When the epidemic is stable, the number of arrival and departure will be relatively high, and vice versa. So the second location of the state is defined as "0" means the number of arrival and departure is high and "3" means the number of arrival and departure is low. 
 
 That's why the reward of (0 0) is the highest which means that the # of confirmed < 0 and the number of arrival and departure is high and (3 3) is the lowest reward.
@@ -368,21 +369,20 @@ In addition to the above conclusions, because the epidemic is getting worse, we 
 The result can be showed in the following picture. And we transfer the recent data to the state we define are showned in the following table.
 <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/recent%20data%20result.PNG" width=60% height=60% align="center"/>
 
-|date|2022-01-01|2022-01-02|2022-01-03|2022-01-04|2022-01-05|2022-01-06|2022-01-07|2022-01-08|
-|----|----------|----------|----------|----------|----------|----------|----------|----------|
-|state|(3 1)|(3 1)|(3 2)|(3 1)|(3 0)|(3 0)|(3 0)|(3 0)|
-|suggest action|MAVVVVV|MAVVVVV|MAVVVV|MAVVVVV|M|M|M|M
+|date|2022-01-01|2022-01-02|2022-01-03|2022-01-04|2022-01-05|2022-01-06|2022-01-07|
+|----|----------|----------|----------|----------|----------|----------|----------|
+|state|(3 1)|(3 1)|(3 2)|(3 1)|(3 0)|(3 0)|(3 0)|
+|suggest action|MAVVVVV|MAVVVVV|MAVVVV|MAVVVVV|M|M|M|
 
-The conclusions in this part are
-+ Now the condition is serious, we should let the vaccination rate(ii) get high enough as soon as possible. But we can also see that the suggest action may be different from cognition because the # of confirmed is high and the # of arrival and departure is getting decrease. But it only suggest to wear mask. It may be caused by the historical data. So in the last part, we will mention some direction that we think we can do better in the future.
+The conclusions in this part is
++ Now the condition is serious, we should let the vaccination rate(ii) get high enough as soon as possible. But we can also see that the suggest action may be different from cognition because the # of confirmed is high and the # of arrival and departure is getting decrease. But it only suggest to wear mask. It may be caused by the historical data. So in the last part, we will mention some directions that we think we can do better in the future.
 
 ## Future work
 After presentation, teacher has recommended some direction that we can try in the future.
-+ nested action and the reward: because all actions are nested, maybe we should give some penalty on reward to avoid the algorithm tend to choose the most serious action.
++ nested action and the reward: <br>Because all actions are nested, maybe we should give some penalty on reward to avoid the algorithm tend to choose the most serious action.
 + We use quantile to discretize the variable. But in different time, there may exist different quantile. So we thought it might be more precise if the quantiles could be determined by different time intervals.
 + After discussion in the Group1 and Group2, we hope that we can extend our method to multiple state or other country to make sure the result is okay.
 + The last recommendation is partial MDP which can deal with some condition we can not see in advance or DQN which can deal with more complicated case.
-
 
 <br />
 
