@@ -386,6 +386,23 @@ After presentation, teacher has recommended some direction that we can try in th
 
 <br />
 
+## Usage
+
+`python mdp.py transition_file reward_file NUM_COL NUM_ROW gamma epsilon`
+
+**transition_file** contains tuple *(state, action, result-state, probability)*
+
+**reward_file** contains tuple *(state, reward)*
+
+**NUM_COL** is the column of 2-dimension state
+
+**NUM_ROW** is the row of 2-dimension state
+
+**gamma** is *discount factor*
+
+**epsilon** is *max error* in utility
+
+<br>
 ---
 ### Reference
 [疫情相關資料](https://github.com/owid/covid-19-data/tree/master/public/data)
