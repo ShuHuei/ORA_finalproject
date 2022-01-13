@@ -28,7 +28,7 @@ As for the reward space, we need to discretize the variables we focus on first. 
 <table style="width:80%" class="table for Q25" >
   <thead>
     <tr >
-        <th scope="col" width="40%"><img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/boxplot.png" width="100%" height="100%"></th>
+        <th scope="col" width="40%"><img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/pic/boxplot.png" width="100%" height="100%"></th>
         <th scope="col" align="center">
             <table>
                 <thead>
@@ -47,7 +47,7 @@ As for the reward space, we need to discretize the variables we focus on first. 
                         <th>723</th>
                     </tr>
                     <tr>
-                        <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/fordemo.png" width="100%" height="100%">
+                        <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/pic/fordemo.png" width="100%" height="100%">
                     </tr>
                 </thead>
             </table>    
@@ -103,7 +103,7 @@ Then we can define our state in Group1 as below:
 So does in Group2.
 
 Then we can use this self-defined state and historical data to calculate the transition matrix. Some of the results are as follows.
-<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/transition%20matrix.PNG" width="100%" height="100%">
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/pic/transition%20matrix.PNG" width="100%" height="100%">
 
 Now we can define the reward. All the state we have explained above. So we know that the state (3 0) in Group1 is the worst case and the state (0 1) is the best case. The rewards are defined in the following table.
 <table align="center">
@@ -227,7 +227,7 @@ And we arrange the current results in the following table.
 ### **Data Collection**
 The dataset used for this study is # of confirmed and vaccination data which can be found on [github](https://github.com/owid/covid-19-data/tree/master/public/data).  The columns *date, new_cases and new_vaccinations* are the variable we use in Group1. Then we collect the timeline of the strategies we focus on and type into a excel and then join with the table which includes date, new_cases and new_vaccinations.
 <br>
-<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/timeline.PNG" width=80% height=80% align="center"/>
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/pic/timeline.PNG" width=80% height=80% align="center"/>
 
 Then we can use the final table to calculate the transition matrix.
 
@@ -238,14 +238,14 @@ In each iteration, the algorithm calculates the expected reward for each action 
 
 As the below convergence diagram shows, the iteration process did converge within the first 100 iterations. Also, the value shows that state (0 1) which is the best case has the highest reward, and the state (3 0) with the lowest value. The value table indicates that the agent tends to move forward to the states with a higher reward, which meets our expectation.
 
-<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group1%20iteration.PNG" width=90% height=90% align="center"/>
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/pic/group1%20iteration.PNG" width=90% height=90% align="center"/>
 
 <br />
 
 From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we decide in each state in the following table.
 <br>
 
-<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group1%20result.PNG" width=90% height=90% align="center"/>
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/pic/group1%20result.PNG" width=90% height=90% align="center"/>
 
 The conclusions in Group1 are
 + When we discuss the # of confirmed and vaccination or not, most of the strategies will be MAV (Mask, Airport control and vaccination).
@@ -317,14 +317,14 @@ That's why the reward of (0 0) is the highest which means that the # of confirme
 ### **Result**
 As the below convergence diagram shows, the iteration process did converge within the first 100 iterations.
 
-<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group2%20iteration.PNG" width=90% height=90% align="center"/>
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/pic/group2%20iteration.PNG" width=90% height=90% align="center"/>
 
 <br />
 
 From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we decide in each state in the folloing table.
 <br>
 
-<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group2%20result.PNG" width=90% height=90% align="center"/>
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/pic/group2%20result.PNG" width=90% height=90% align="center"/>
 
 The conclusions in Group2 are
 + When we discuss the # of confirmed and # of arrivals, we only find that if the # of confirmed is between Q25 and Q50,we will suggest that the strategy is MA(Mask and airport control).
@@ -368,7 +368,7 @@ In addition to the above conclusions, because the epidemic is getting worse, we 
 
 <br>
 The result can be showed in the following picture. And we transfer the recent data to the state we define are showned in the following table.
-<img align="center" src="https://github.com/ShuHuei/ORA_finalproject/blob/main/recent%20data%20result.PNG" width=60% height=60%/>
+<img align="center" src="https://github.com/ShuHuei/ORA_finalproject/blob/main/pic/recent%20data%20result.PNG" width=60% height=60%/>
 
 |date|2022-01-01|2022-01-02|2022-01-03|2022-01-04|2022-01-05|2022-01-06|2022-01-07|
 |----|----------|----------|----------|----------|----------|----------|----------|
