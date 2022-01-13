@@ -7,8 +7,8 @@
 #### Contents:
 1. [Motivation and Background](#Motivation-and-Background)
 2. [Methodology](#Methodology)
-3. [Value Iteration Model](#Part-I-Value-Iteration)
-4. [Deep Q-learning Models](#Part-II-Deep-Q-learning)
+3. [Analysis Result in Group1](#Part-I:-Analysis-Result-in-Group1)
+4. [Analysis Result in Group2](#Part-II:-Analysis-Result-in-Group2)
 5. [Conclusion](#Conclusion)
 6. [Reference](#Reference)
 <br />
@@ -220,187 +220,115 @@ And we arrange the current results in the following table.
 
 <br/>
 
-## Part I: Value Iteration
-#### Contents:
-1. [Data Collection](#Data-Collection)
-2. [Markov Decision Process Setup](#Markov-Decision-Process-Setup)
-3. [Value Iteration Algorithm](#Value-Iteration-Algorithm)
-4. [Result](#Result)
-
+## Part I: Analysis Result in Group1
 
 ### **Data Collection**
-The dataset used for this study is a specific product demand data over 145 weeks, which is collected from an [online food demand dataset on Kaggle](https://www.kaggle.com/firebee/food-demand-forcasting).  The columns *checkout_price, num_orders* serve as the price and demand values . <!-- For the multiple variables state, we add *homepage_featured* column, which stands for whether the particular food is featured on the homepage of the platform, into our model.  -->
+The dataset used for this study is # of confirmed and vaccination data [github](https://github.com/owid/covid-19-data/tree/master/public/data).  The columns *date, new_cases and new_vaccinations* are the variable we use in Group1. Then we collect the timeline of the strategies we focus on and type into a excel and then join with the table which includes date, new_cases and new_vaccinations.
+<br>
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/timeline.PNG" width=100% height=100% align="center"/>
 
-<!-- ### Demand Prediction
-First, in order to calculate the profit reward, we developed a mapping between the price and demand variables with regard to the historical data,  -->
+Calculate the transition matrix.
 
-### **Markov Decision Process Setup**
-
-<img src="https://i.imgur.com/IqdPhU4.png" width=35% height=35%/>
-
-
-To obtain the state space, the price variable is discretized into five points. The agent can choose to move to any of the states as its action. 
-
-As for the reward function, a mapping between the price and demand variables is developed with regard to the historical data, thus, the predicted profit for each state is able to calculated respectively as the below figure shows. The reward of the state is set to be one for the highest profit case, and negative one for the lowest case, others zero.
-
-<img src="https://i.imgur.com/I6rdZHP.png" width=45% height=45% align="center"/>
-
-<br />
-
-### **Value Iteration Algorithm**
-The algorithm uses the Bellman’s Equation:
-<!-- $$V(s_t) = \max_{a_t}\{ R(s_t) + \gamma \sum_{s_{t+1}}P(s_{t+1}|s_t, a_t) V(s_{t+1})\}, \forall s$$ -->
-<img src="https://i.imgur.com/pVlXibT.png" width=50% height=50%/>
-
-In each iteration, the algorithm calculates the expected reward for each action under the current price state. Then, it selects the action which brings the highest reward, and updates the value table of the current state with the maximal reward value. The algorithm will stop until the improvement is small enough, which implies convergence.
-
-<!-- (pseudo) -->
+### **Markov Decision Process via Value Iteration**
+In each iteration, the algorithm calculates the expected reward for each action under the current state. Then, it selects the action which brings the highest reward, and updates the value table of the current state with the maximal reward value. The algorithm will stop until the improvement is small enough, which implies convergence.
 
 ### **Result**
 
-As the below convergence diagram shows, the iteration process did converge within the first 100 iterations. Also, the value table shows that state zero, which has the highest profit, also has the highest value, and the state with lowest profit (state four) has the lowest value. The value table indicates that the agent tends to move forward to the states with a higher predicted profit, which meets our expectation.
+As the below convergence diagram shows, the iteration process did converge within the first 100 iterations. Also, the value shows that state (0 1) which is the best case has the highest reward, and the state (3 0) with the lowest value. The value table indicates that the agent tends to move forward to the states with a higher reward, which meets our expectation.
 
-<img src="https://i.imgur.com/Gs4rn7O.png" width=90% height=90%/>
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group1%20iteration.PNG" width=90% height=90% align="center"/>
 
 <br />
 
-From the analysis above we can easily see that the value iteration method helps determine pricing decisions and tells which state is better according to the reward function, however, due to the simple setting of the state space, the result is relatively trivial. Thus we adopted DQN as our second method to see if it can deal with a more complicated case.
+From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we can decide in eac state in the folloing table.
+<br>
 
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group1%20result.PNG" width=90% height=90% align="center"/>
 
+The conclusion in Group1 are
++ When we discuss the # of confirmed and vaccination or not, most of the strategies will be MAV (Mask, Airport control and vaccination).
++ One interesting thing is that when the # of confirmed is high but we haven’t started to vaccinate, it will recommend to achieve 20% vaccination rate.
 
 <br/>
 
 
-## Part II: Deep Q-learning
-
-**Content:**
-1. [Data Collection](#Data-Collection1)
-2. [Study Overview](#Study-Overview)
-3. [Result](#Result1)
-    * [Single-variable with Profit-reward Model](#Single-variable-with-Profit-reward-Model)
-    * [Multiple-variable with Profit-reward Model](#Multiple-variable-with-Profit-reward-Model)
-    * [Single-variable with DCR-reward Model](#Single-variable-with-DCR-reward-Model)
-    * [Multiple-variable with DCR-reward Model](#Multiple-variable-with-DCR-reward-Model)
+## Part-II: Analysis Result in Group2
 
 ### **Data Collection**
-The dataset is collected from an online shoes shop. It consists of two tables: order data and customer behavior data. The order data contains the *purchased item amount* and *price* of each order, and the behavior data contains the everyday *page-view times* and *add-to-cart times*. The customer behavior data thus serves as a great source for trying multiple state process.  
+In this part, we also use the data from github. But we add a new variable which is about the number of arrival and departure of Taiwan. This data is from the open data of the [government](https://data.moi.gov.tw/moiod/Data/DataDetail.aspx?oid=905908DA-0EF6-4B24-87B0-35B7EDA4CFD2). We download all of these excels and sum the number of each airport and port. Then do the same thing as in the first part. We use quantile to discretize the variable.
 
+**State and Reward Settings**
+We have posted this table in the above. But we don't explain it. 
+The state in Group2 still has two location. The first location is the same as Group1 which indicate that the # of confirmed. "0" means # of confirmed < 0 and "3" means # of confirmed > 8. And the second location is about the number of arrival and departure. When the epidemic is stable, the number of arrival and departure will be relatively high, and vice versa. So the second location of the state is defined as "0" means the number of arrival and departure is high and "3" means the number of arrival and departure is low. 
 
-### **Study Overview**
-According to [Liu et al. (2019)](https://arxiv.org/abs/1912.02572), experiment results suggest that difference of revenue conversion rates is a more appropriate reward function than revenue. Therefore, we define the daily *conversion rate* as the daily *item amount sold* divided by the *page-view times*.
-
-<img src="https://i.imgur.com/SV21Wj2.png" width=35% height=35%/>
-<!-- $$ \mathsf{conversion\ rate = \frac{item\ amount\ sold}{page\ view\ times}}$$ -->
-
-The following study implements four models with two different state settings and two different reward functions.
-
-**State Settings**
-1. **Single-variable state:** The state is constructed by a vector of *price* variables looking back at a *window_size* of time. The *window_size* is set to be ten in our study. That is to say, the state is composed of the *price* of the past ten time periods.
-<!-- $$\mathsf{[price_1,\ price_2,\ ...,\ price_{10} ]}$$ -->
-
-   <img src="https://i.imgur.com/JkXZASa.png" width=30% height=30%/>
-
-2. **Multiple-variables state:** This state is constructed by vectors of *price*, *add-to-cart times*, *page-view times* variables. Same as above, each vector is composed of the past ten times data.
-<!-- $$\begin{align}
-\mathsf{[}\ & \mathsf{[price_1,\ price_2,\ ...,\ price_{10} ]}\\
-& \mathsf{[addToCart_1,\ ...,\ addToCart_{10} ]} \\
-& \mathsf{[pageView_1,\ ...,\ pageView_{10} ]\ ]}
-\end{align}$$ -->
-
-   <img src="https://i.imgur.com/TDGmLZ4.png" width=33% height=33%/>
-
-
-**Reward Functions**
-
-<img src="https://i.imgur.com/P0yibio.png" width=57% height=57%/>
-<!-- 1. **Profit:** $\mathsf{price \times predicted\ product\ amount\ sold.}$
-2. **Difference of conversion rate (DCR):** 
-$$\mathsf{\frac{predicted\ product\ amount\ sold_t}{page\ view\ times_t} - \frac{predicted\ product\ amount\ sold_{t-1}}{page\ view\ times_{t-1}}}$$ -->
-
-The four models share the same action space, which is defined as below:
-
-<img src="https://i.imgur.com/uYiaeRt.png" width=32% height=32%/>
-<!-- **Action Space**$\mathsf{ = \{remain,\ increase,\ reduce\}}$
-1. **Remain:** $\mathsf{price_t = price_{t-1}.}$
-2. **Increase:** $\mathsf{price_t = 1.03 \times price_{t-1}.}$
-3. **Reduce:** $\mathsf{price_t = 0.97 \times price_{t-1}.}$ -->
-
-To predict the product amount sold, we simply construct a Random Forest model as a mapping between price and demand. The figures below show the expected relationship between price and the rewards.
-
-<img src="https://i.imgur.com/5ZVI7OH.png" width=90% height=90%/>
-
-<br />
+That's why the reward of (0 0) is the highest which means that the # of confirmed < 0 and the number of arrival and departure is high and (3 3) is the lowest reward.
+<br>
+<table align="center" class="AAA">
+    <thead>
+        <tr>
+            <td>state</td>
+            <th align="center">(0 0)</th>
+            <th align="center">(0 1)</th>
+            <th align="center">(0 2)</th>
+            <th align="center">(0 3)</th>
+            <th align="center">(1 0)</th>
+            <th align="center">(1 1)</th>
+            <th align="center">(1 2)</th>
+            <th align="center">(1 3)</th>
+        </tr>
+        <tr>
+            <td>reward</td>
+            <th align="center">10</th>
+            <th align="center">6</th>
+            <th align="center">2</th>
+            <th align="center">0</th>
+            <th align="center">6</th>
+            <th align="center">2</th>
+            <th align="center">-2</th>
+            <th align="center">-4</th>
+        </tr>
+        <tr>
+            <td>state</td>
+            <th align="center">(2 0)</th>
+            <th align="center">(2 1)</th>
+            <th align="center">(2 2)</th>
+            <th align="center">(2 3)</th>
+            <th align="center">(3 0)</th>
+            <th align="center">(3 1)</th>
+            <th align="center">(3 2)</th>
+            <th align="center">(3 3)</th>
+        </tr>
+        <tr>
+            <td>reward</td>
+            <th align="center">2</th>
+            <th align="center">-2</th>
+            <th align="center">-6</th>
+            <th align="center">-8</th>
+            <th align="center">0</th>
+            <th align="center">-4</th>
+            <th align="center">-8</th>
+            <th align="center">-10</th>
+        </tr>
+    </thead>
+</table>    
 
 ### **Result**
-### <ins>Single-variable with Profit-reward Model</ins>
-<img src="https://i.imgur.com/BcmaVow.png" width=30% height=30%/>
-<!-- **State:** single-variable state.
-**Action:** $\mathsf{\{remain,\ increase,\ reduce\}}$.
-**Reward:** Profit.
-**Episode:** 750. -->
+As the below convergence diagram shows, the iteration process did converge within the first 100 iterations.
 
-<img src="https://i.imgur.com/Q2Cl6Jq.png" width=90% height=90% />
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group2%20iteration.PNG" width=90% height=90% align="center"/>
+
 <br />
 
+From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we can decide in eac state in the folloing table.
+<br>
 
-The model shows no sign of convergence after 750 episodes, and the agent tends to choose the increasing price action in every condition. This can be concluded that, in this model, the state variable price alone is not enough to represent the current state, thus we moved on to the next model with multiple state variables.
-<br />
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group2%20result.PNG" width=90% height=90% align="center"/>
 
-### <ins>Multiple-variable with Profit-reward Model</ins>
-<img src="https://i.imgur.com/G1UB5xP.png" width=30% height=30%/>
-<!-- **State:** multiple-variable state.
-**Action:** $\mathsf{\{remain,\ increase,\ reduce\}}$.
-**Reward:** Profit.
-**Episode:** 750. -->
+The conclusion in Group2 are
++ When we discuss the # of confirmed and # of arrivals, we only find that if the # of confirmed is between Q25 and Q50,we will suggest that the strategy is MA(Mask and airport control).
++ And other interesting things. The first thing is highlight in green triangle. When the # of confirmed is high(the first location of the state is 2 or 3), then the suggest action may be MAV(Mask, airport control and vaccination). The second one is that if the # of confirmed is high and the # of arrivals starts decrease, then the suggest action may be the most serious one MAVV, which means we should let the vaccination rate achieve 20% as soon as possible.   
 
-<img src="https://i.imgur.com/WY7N0E6.png" width=90% height=90%/>
-
-<!-- <img src="https://i.imgur.com/T6wq0bZ.png"  width=45% height=45% />
 <br/>
-<img src="https://i.imgur.com/bxBerWp.png"  width=45% height=45% />
-<img src="https://i.imgur.com/szzHsKr.png"  width=45% height=45% /> -->
-<br /> 
-
-We can observe that the total profit has a higher converging tendency compared to the single state variable one. Moreover, the profits it gains generally surpass the profits obtained from the single state model. 
-
-The previous figure shows that  the peak of predicted profit is located at nearly 410 dollars. In the Q-table plot, we can see that most states with prices higher than 410 are suggested to reduce prices, and the increasing price suggestion takes place as prices being lower than 410, which meets our expectation.
-
-### <ins>Single-variable with DCR-reward Model</ins>
-<img src="https://i.imgur.com/iHwPnDM.png" width=30% height=30%/>
-<!-- **State:** single-variable state.
-**Action:** $\mathsf{\{remain,\ increase,\ reduce\}}$.
-**Reward:** Difference of Conversion Rate.
-**Episode:** 730. -->
-
-<img src="https://i.imgur.com/VPiJuW6.png" width=90% height=90%/>
-
-<!-- <img src="https://i.imgur.com/1EjJ15F.png"  width=45% height=45%/>
-<img src="https://i.imgur.com/BnPwshF.png"  width=45% height=45% />
-<br /> 
-<img src="https://i.imgur.com/SBDf0BO.png"  width=45% height=45% /> -->
-<br/>
-
-After adjusted the reward function to the difference of conversion rate, in this single state model, we can see the model converged really fast. While the total profits fluctuated between 405,000 and 400,000. 
-
-### <ins>Multiple-variable with DCR-reward Model</ins>
-<img src="https://i.imgur.com/Hd4oObZ.png" width=30% height=30%/>
-<!-- **State:** multiple-variable state.
-**Action:** $\mathsf{\{remain,\ increase,\ reduce\}}$.
-**Reward:** Difference of Conversion Rate.
-**Episode:** 750. -->
-
-<img src="https://i.imgur.com/Gc4tz3w.png" width=90% height=90%/>
-
-<!-- <img src="https://i.imgur.com/lRhDa1t.png"  width=45% height=45%/>
-<img src="https://i.imgur.com/UMhuTK5.png"  width=45% height=45% />
-<br /> 
-
-<img src="https://i.imgur.com/nbwdrYS.png"   width=45% height=45% />
-<img src="https://i.imgur.com/OWWgOD1.png"  width=45% height=45% /> -->
-<br/>
-
-This model gains better performance on the reward value, yet did not obtain higher profit. This may result from the model doing better on maximizing the difference of conversion rate, but did not fully transform into profit performance.
-<br />
 
 ## Conclusion
 
