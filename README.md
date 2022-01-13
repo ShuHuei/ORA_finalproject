@@ -389,7 +389,7 @@ After presentation, teacher has recommended some direction that we can try in th
 
 You can use **prepare transition and reward for Group1.py** and **prepare transition and reward for Group2.py** to create the transition and reward excel for Group1 and Group2 respectively. These code will need the data we mention above and the data in the data folder which store the action Taiwan have done in these days.
 
-After completing the two files, you can use **mdp.py** by following the steps below:
+After completing the two files, you can use **mdp.py** by following the steps below to reproduce the above results:
 
 `python mdp.py transition_file reward_file NUM_COL NUM_ROW gamma epsilon`
 
