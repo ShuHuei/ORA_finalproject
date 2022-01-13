@@ -402,9 +402,9 @@ After presentation, teacher has recommended some direction that we can try in th
 
 **epsilon** is *max error* in utility
 
-<br>
----
-### Reference
+-----
+
+## Reference
 [疫情相關資料](https://github.com/owid/covid-19-data/tree/master/public/data)
 
 [出入境資料](https://data.moi.gov.tw/moiod/Data/DataDetail.aspx?oid=905908DA-0EF6-4B24-87B0-35B7EDA4CFD2)
