@@ -240,7 +240,7 @@ As the below convergence diagram shows, the iteration process did converge withi
 
 <br />
 
-From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we can decide in eac state in the folloing table.
+From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we can decide in each state in the folloing table.
 <br>
 
 <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group1%20result.PNG" width=90% height=90% align="center"/>
@@ -319,7 +319,7 @@ As the below convergence diagram shows, the iteration process did converge withi
 
 <br />
 
-From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we can decide in eac state in the folloing table.
+From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we can decide in each state in the folloing table.
 <br>
 
 <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group2%20result.PNG" width=90% height=90% align="center"/>
