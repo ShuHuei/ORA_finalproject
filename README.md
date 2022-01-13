@@ -7,8 +7,8 @@
 #### Contents:
 1. [Motivation and Background](#Motivation-and-Background)
 2. [Methodology](#Methodology)
-3. [Analysis Result in Group1](##Part-I:-Analysis-Result-in-Group1)
-4. [Analysis Result in Group2](##Part-II:-Analysis-Result-in-Group2)
+3. [Analysis Result in Group1](#Part-I:-Analysis-Result-in-Group1)
+4. [Analysis Result in Group2](#Part-II:-Analysis-Result-in-Group2)
 5. [Conclusion](#Conclusion)
 6. [Reference](#Reference)
 <br />
@@ -69,13 +69,13 @@ Then we can define our state in Group1 as below:
         </tr>
         <tr>
             <td>meaning</td>
-            <th># confirmed > 8<br>
+            <th># of confirmed > 8<br>
                 no vaccination</th>
-            <th>3 < # confirmed < 8<br>
+            <th>3 < # of confirmed < 8<br>
                 no vaccination</th>
-            <th>0 < # confirmed < 3<br>
+            <th>0 < # of confirmed < 3<br>
                 no vaccination</th>
-            <th># confirmed < 0<br>
+            <th># of confirmed < 0<br>
                 no vaccination</th>
         </tr>
         <tr>
@@ -87,13 +87,13 @@ Then we can define our state in Group1 as below:
         </tr>
         <tr>
             <td>meaning</td>
-            <th># confirmed > 8<br>
+            <th># of confirmed > 8<br>
                 vaccination</th>
-            <th>3 < # confirmed < 8<br>
+            <th>3 < # of confirmed < 8<br>
                 vaccination</th>
-            <th>0 < # confirmed < 3<br>
+            <th>0 < # of confirmed < 3<br>
                 vaccination</th>
-            <th># confirmed < 0<br>
+            <th># of confirmed < 0<br>
                 vaccination</th>
         </tr>
     </thead>
@@ -199,7 +199,7 @@ And we arrange the current results in the following table.
     <tr>
       <th scope="row">State</th>
       <td> # of confirmed <br> vaccination or not</td>
-      <td># of confirmed  <br> # of entering and leaving</td>
+      <td># of confirmed  <br> # of arrival and departure</td>
     </tr>
     <tr>
       <th scope="row">Action</th>
@@ -223,11 +223,11 @@ And we arrange the current results in the following table.
 ## Part I: Analysis Result in Group1
 
 ### **Data Collection**
-The dataset used for this study is # of confirmed and vaccination data [github](https://github.com/owid/covid-19-data/tree/master/public/data).  The columns *date, new_cases and new_vaccinations* are the variable we use in Group1. Then we collect the timeline of the strategies we focus on and type into a excel and then join with the table which includes date, new_cases and new_vaccinations.
+The dataset used for this study is # of confirmed and vaccination data which can be found on [github](https://github.com/owid/covid-19-data/tree/master/public/data).  The columns *date, new_cases and new_vaccinations* are the variable we use in Group1. Then we collect the timeline of the strategies we focus on and type into a excel and then join with the table which includes date, new_cases and new_vaccinations.
 <br>
 <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/timeline.PNG" width=100% height=100% align="center"/>
 
-Calculate the transition matrix.
+Then we can use the final table to calculate the transition matrix.
 
 ### **Markov Decision Process via Value Iteration**
 In each iteration, the algorithm calculates the expected reward for each action under the current state. Then, it selects the action which brings the highest reward, and updates the value table of the current state with the maximal reward value. The algorithm will stop until the improvement is small enough, which implies convergence.
@@ -240,12 +240,12 @@ As the below convergence diagram shows, the iteration process did converge withi
 
 <br />
 
-From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we can decide in each state in the folloing table.
+From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we decide in each state in the following table.
 <br>
 
 <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group1%20result.PNG" width=90% height=90% align="center"/>
 
-The conclusion in Group1 are
+The conclusions in Group1 are
 + When we discuss the # of confirmed and vaccination or not, most of the strategies will be MAV (Mask, Airport control and vaccination).
 + One interesting thing is that when the # of confirmed is high but we haven’t started to vaccinate, it will recommend to achieve 20% vaccination rate.
 
@@ -319,12 +319,12 @@ As the below convergence diagram shows, the iteration process did converge withi
 
 <br />
 
-From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we can decide in each state in the folloing table.
+From the analysis above we can easily see that the value iteration method helps determine which state is better according to the reward function. And we can conclude the action we decide in each state in the folloing table.
 <br>
 
 <img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/group2%20result.PNG" width=90% height=90% align="center"/>
 
-The conclusion in Group2 are
+The conclusions in Group2 are
 + When we discuss the # of confirmed and # of arrivals, we only find that if the # of confirmed is between Q25 and Q50,we will suggest that the strategy is MA(Mask and airport control).
 + And other interesting things. The first thing is highlight in green triangle. When the # of confirmed is high(the first location of the state is 2 or 3), then the suggest action may be MAV(Mask, airport control and vaccination). The second one is that if the # of confirmed is high and the # of arrivals starts decrease, then the suggest action may be the most serious one MAVV, which means we should let the vaccination rate achieve 20% as soon as possible.   
 
@@ -332,15 +332,66 @@ The conclusion in Group2 are
 
 ## Conclusion
 
-In our research, we implemented and compared different approaches of reinforcement learning on dynamic pricing issues, both of them are effective in providing pricing suggestions. However, as we’re facing more complicated situations and environments in real life retailing, Deep Q-learning might serve as the better method, since it is shown in our work that DQN has the ability to adopt more realistic state space settings, which enables it to take different conditions into consideration. Also, we found that having more state variables helps the DQN model gain higher profits, since the model shows more reasonable actions in the Q-table plot. Eventually, different settings on the reward function may influence the extent of convergence and lead to different optimizing results, yet we observe that there is a positive relationship between difference of conversion rate and profit, which makes it an alternative perspective on pricing suggestions.
+In addition to the above conclusions, because the epidemic is getting worse, we collect recent data to do this process again. And this time we re-define the action because if we only extend the time we investigate, all the action are the same which is MAV(mask, airport control and vaccination). It may be difficult to find some rule in historical data.
+
+<table align="center" class="table justify-content-center" >
+  <thead>
+    <tr >
+      <th scope="col"></th> 
+      <th scope="col" align="center">Group 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">State</th>
+      <td># of confirmed  <br> # of arrival and departure</td>
+    </tr>
+    <tr>
+      <th scope="row">Action</th>
+      <td colspan="2">Mask (M)<br>
+                      Mask + Airport control (MA)<br>
+                      Mask + Airport control + Vaccination (MAV)<br>
+                      Mask + Airport control + Vaccination rate(i) > 20% (MAVV)<br>
+                      Mask + Airport control + Vaccination rate(i) > 50% (MAVVV)<br>
+                      Mask + Airport control + Vaccination rate(ii) > 20% (MAVVVV)<br>
+                      Mask + Airport control + Vaccination rate(ii) > 50% (MAVVVVV)<br>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">Reward</th>
+      <td colspan="2">same as the table above</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+The result can be showed in the following picture. And we transfer the recent data to the state we define are showned in the following table.
+<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/recent%20data%20result.PNG" width=60% height=60% align="center"/>
+
+|date|2022-01-01|2022-01-02|2022-01-03|2022-01-04|2022-01-05|2022-01-06|2022-01-07|2022-01-08|
+|----|----------|----------|----------|----------|----------|----------|----------|----------|
+|state|(3 1)|(3 1)|(3 2)|(3 1)|(3 0)|(3 0)|(3 0)|(3 0)|
+|suggest action|MAVVVVV|MAVVVVV|MAVVVV|MAVVVVV|M|M|M|M
+
+The conclusions in this part are
++ Now the condition is serious, we should let the vaccination rate(ii) get high enough as soon as possible. But we can also see that the suggest action may be different from cognition because the # of confirmed is high and the # of arrival and departure is getting decrease. But it only suggest to wear mask. It may be caused by the historical data. So in the last part, we will mention some direction that we think we can do better in the future.
+
+## Future work
+After presentation, teacher has recommended some direction that we can try in the future.
++ nested action and the reward: because all actions are nested, maybe we should give some penalty on reward to avoid the algorithm tend to choose the most serious action.
++ We use quantile to discretize the variable. But in different time, there may exist different quantile. So we thought it might be more precise if the quantiles could be determined by different time intervals.
++ After discussion in the Group1 and Group2, we hope that we can extend our method to multiple state or other country to make sure the result is okay.
++ The last recommendation is partial MDP which can deal with some condition we can not see in advance or DQN which can deal with more complicated case.
+
 
 <br />
 
 ---
 ### Reference
-[How To Code The Value Iteration Algorithm For Reinforcement Learning, François St-Amant (2021)](https://towardsdatascience.com/how-to-code-the-value-iteration-algorithm-for-reinforcement-learning-8fb806e117d1)
+[疫情相關資料](https://github.com/owid/covid-19-data/tree/master/public/data)
 
-[增強式學習 (DQN) - 股票操作](https://ithelp.ithome.com.tw/articles/10228127?sc=iThelpR)
+[出入境資料](https://data.moi.gov.tw/moiod/Data/DataDetail.aspx?oid=905908DA-0EF6-4B24-87B0-35B7EDA4CFD2)
 
-[Reinforcement Learning 進階篇：Deep Q-Learning
-](https://medium.com/pyladies-taiwan/reinforcement-learning-%E9%80%B2%E9%9A%8E%E7%AF%87-deep-q-learning-26b10935a745)
+[Vaccination data](https://github.com/owid/covid-19-data/tree/master/public/data)
+
+[MDP reference](https://github.com/sachinbiradar9/Markov-Decision-Processes/blob/master/mdp.py)
