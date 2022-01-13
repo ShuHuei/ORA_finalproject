@@ -385,8 +385,6 @@ After presentation, teacher has recommended some direction that we can try in th
 + After discussion in the Group1 and Group2, we hope that we can extend our method to multiple state or other country to make sure the result is okay.
 + The last recommendation is partial MDP which can deal with some condition we can not see in advance or DQN which can deal with more complicated case.
 
-<br />
-
 ## Usage
 
 `python mdp.py transition_file reward_file NUM_COL NUM_ROW gamma epsilon`
