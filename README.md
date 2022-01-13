@@ -367,7 +367,7 @@ In addition to the above conclusions, because the epidemic is getting worse, we 
 
 <br>
 The result can be showed in the following picture. And we transfer the recent data to the state we define are showned in the following table.
-<img src="https://github.com/ShuHuei/ORA_finalproject/blob/main/recent%20data%20result.PNG" width=60% height=60% align="center"/>
+<img align="center" src="https://github.com/ShuHuei/ORA_finalproject/blob/main/recent%20data%20result.PNG" width=60% height=60% />
 
 |date|2022-01-01|2022-01-02|2022-01-03|2022-01-04|2022-01-05|2022-01-06|2022-01-07|
 |----|----------|----------|----------|----------|----------|----------|----------|
