@@ -10,7 +10,8 @@
 3. [Analysis Result in Group1](#part-i-analysis-result-in-group1)
 4. [Analysis Result in Group2](#part-ii-analysis-result-in-group2)
 5. [Conclusion](#Conclusion)
-6. [Reference](#Reference)
+6. [How to use the code](#Usage)
+7. [Reference](#Reference)
 <br />
 
 ## Motivation and Background
