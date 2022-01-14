@@ -129,6 +129,7 @@ def count_pro(c_status,freq):
 
 
 all_data = all_data.iloc[:,1:]
+all_data = all_data.dropna()
 
 l = np.unique(all_data.iloc[:,0])
 
